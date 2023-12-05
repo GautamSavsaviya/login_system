@@ -1,0 +1,34 @@
+{% extends "authentication/base.html" %}
+
+
+{% block card_title%}Login{% endblock %}
+{% block card_text %}
+<div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+<div>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label"><b>Username:</b></label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label"><b>Password:</b></label>
+            <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Enter Password">
+        </div>
+        <div>
+            <p>You don't have an account? <a href="{% url 'signup' %}" class="text-decoration-none">Signup</a></p>
+        </div>
+        <input type="submit" value="Login" class="btn btn-primary">
+        <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+{% endblock %}

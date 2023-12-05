@@ -1,0 +1,53 @@
+{% extends "authentication/base.html" %}
+
+
+{% block card_title%}SignUp{% endblock %}
+{% block card_text %}
+<div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+<div>
+    <form action="{% url 'signup' %}" method="post" class="row">
+        {% csrf_token %}
+        <div class="mb-3 col-md-6">
+            <label for="username" class="form-label"><b>Username:</b></label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="fname" class="form-label"><b>First Name:</b></label>
+            <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter first name">
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="lname" class="form-label"><b>Last Name:</b></label>
+            <input type="text" class="form-control" name="lname" id="lname" placeholder="Enter last name">
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="email" class="form-label"><b>Email:</b></label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="pass1" class="form-label"><b>Password:</b></label>
+            <input type="password" class="form-control" name="pass1" id="pass1" placeholder="Enter Password">
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="pass2" class="form-label"><b>Confirm Password:</b></label>
+            <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Confirm Password">
+        </div>
+        <div>
+            <p>You have already an account? <a href="{% url 'login' %}" class="text-decoration-none">Login</a></p>
+        </div>
+        <div>
+            <input type="submit" value="Signup" class="btn btn-primary">
+            <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+        </div>
+        
+    </form>
+</div>
+{% endblock %}
